@@ -6,6 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import DataStore from "./Store/DataStore";
 import { Provider } from "mobx-react";
+import { toJS } from "mobx";
 
 const dataStore = new DataStore();
 
@@ -52,22 +53,13 @@ class App extends Component {
       let ids = Object.keys(current).filter(n => current[n]);
       return prev.concat(ids);
     }, []);
-    console.log(pi_ids);
     const queries = pi_ids.map(id => this.getPiDataQuery(id));
-    let pi_map = {};
-    let aggregate_campus_data = {};
+    dataStore.pi_map = {};
     queries.forEach(ref => {
       ref.on("value", snapshot => {
         const val = snapshot.val();
-        pi_map[ref.ref.key] = val;
-
-        Object.keys(val).map(ts => {
-          // round down to nearest 10th minute to avoid offset issues
-          const roundedts = Math.floor(Number(ts)/600) * 600;
-          let amount = aggregate_campus_data[roundedts] || 0;
-          aggregate_campus_data[roundedts] = amount + val[ts].length;
-        })
-        console.log(aggregate_campus_data);
+        dataStore.pi_map[ref.ref.key] = val;
+        dataStore.aggregateTimestamps(val, "campus");
       })
     })
   }

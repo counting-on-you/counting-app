@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Container, Card, CardBody, CardTitle, Button, Col } from "reactstrap";
 import { LineChart } from "./";
-import { inject } from "mobx-react";
+import { inject, observer } from "mobx-react";
+import { toJS } from 'mobx';
 
 @inject("dataStore")
+@observer
 class CampusChart extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,7 @@ class CampusChart extends Component {
 
   render() {
     const { selected } = this.state;
+    console.log(toJS(this.props.dataStore.aggregate.campus.data));
     return (
       <Col>
         <Card className="w-100 ">
