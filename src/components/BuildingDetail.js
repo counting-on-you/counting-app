@@ -24,13 +24,13 @@ export class BuildingDetail extends Component {
         });
 
       return (
-        <Container>
+        <Col>
           <CampusChart {...this.props} />
 					<FloorList />
           <Row className="justify-content-md-center">
             <Col xs="auto">{floorsElement}</Col>
           </Row>
-        </Container>
+        </Col>
       );
     } else {
       return (

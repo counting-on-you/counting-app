@@ -4,7 +4,8 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Button
+  Button,
+  Col
 } from "reactstrap";
 import { LineChart } from './'
 
@@ -20,16 +21,16 @@ export class CampusChart extends Component {
   render() {
     const { selected } = this.state;
     return (
-      <Container>
-        <Card className="w-100">
+      <Col>
+        <Card className="w-100 ">
           <CardBody className="w-100">
             <CardTitle>{this.props.title}</CardTitle>
           </CardBody>
-          <div className="d-flex justify-content-center w-100">
+          <div className="d-flex justify-content-center w-100" style={{paddingRight: 10, paddingLeft: 10}}>
             <LineChart/>
           </div>
           <CardBody>
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row justify-content-center">
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 0 ? "primary" : "link"}
@@ -69,7 +70,7 @@ export class CampusChart extends Component {
             </div>
           </CardBody>
         </Card>
-      </Container>
+      </Col>
     );
   }
 }

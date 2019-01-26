@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "./firebase";
 import { Home, Header, BuildingDetail } from "./components";
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from "reactstrap";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class App extends Component {
     this.ref = this.db.ref("/building/");
     // console.log(this.ref);
     this.state = {
-      data: {}
+      data: null
     };
     this.syncData();
   }
@@ -28,6 +27,18 @@ class App extends Component {
         data: val
       });
       this.aggregatePiData();
+      console.log(val);
+      this.getBuildingList(val)
+    });
+  };
+
+  getBuildingList = data => {
+    const buildingData = Object.keys(data).map(buildingName => {
+      return { name: data[buildingName].name, id: buildingName };
+    });
+
+    this.setState({
+      buildingData
     });
   };
 
@@ -48,22 +59,30 @@ class App extends Component {
     const WEEK_SECONDS = DAY_SECONDS * 7;
     const MONTH_SECONDS = WEEK_SECONDS * 31;
     const lastTime = NOW_SECONDS - HOUR_SECONDS; 
-    return this.db.ref(`/data/${piid}`).orderByKey().endAt(lastTime);
+    return this.db.ref(`/data/${piid}`).orderByKey().endAt(""+lastTime);
   }
 
   render() {
     return (
       <Router>
-        <Container fluid style={{padding: 0}}>
+        <div style={{flex:1}}>
           <Header />
           <Switch>
-            <Route exact path="/" 
-              render={props => <Home {...props} data={this.state.data} getPiDataQuery={this.getPiDataQuery} />} />
-            <Route exact path='/building/:id'
-              render={props => <BuildingDetail {...props} data={this.state.data} />}
+            <Route
+              exact
+              path="/"
+              getPiDataQuery={this.getPiDataQuery}
+              render={props => <Home {...props} buildingData={this.state.buildingData} />}
+            />
+            <Route
+              exact
+              path="/building/:id"
+              render={props => (
+                <BuildingDetail {...props} data={this.state.data} />
+              )}
             />
           </Switch>
-        </Container>
+        </div>
       </Router>
     );
   }
