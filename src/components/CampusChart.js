@@ -17,7 +17,15 @@ class CampusChart extends Component {
 
   render() {
     const { selected } = this.state;
-    console.log(toJS(this.props.dataStore.aggregate.campus.data));
+    const data = this.props.dataStore.aggregate.campus.data;
+    let chartData;
+
+    if(data) {
+      chartData = Object.keys(data).map(ts => {
+        return { x: ts, y: data[ts] };
+      })
+    }
+
     return (
       <Col>
         <Card className="w-100 ">
@@ -28,7 +36,7 @@ class CampusChart extends Component {
             className="d-flex justify-content-center w-100"
             style={{ paddingRight: 10, paddingLeft: 10 }}
           >
-            <LineChart />
+            <LineChart data={chartData} />
           </div>
           <CardBody>
             <div className="d-flex flex-row-reverse justify-content-center">
