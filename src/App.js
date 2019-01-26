@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import firebase from "./firebase";
 import { Home, Header } from "./components";
+import { Container, Row, Col } from 'reactstrap';
 
 class App extends Component {
   constructor(props) {
@@ -31,10 +32,10 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ flex: 1 }}>
+      <Container fluid={true}>
         <Header />
         <Home />
-      </div>
+      </Container>
     );
   }
 }

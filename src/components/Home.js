@@ -9,9 +9,9 @@ export class Home extends Component {
 
   render() {
     return (
-      <Col style={{ flex: 1 }}>
-        <Row>Test</Row>
-      </Col>
+      <Row className="justify-content-md-center">
+         <Col xs="auto">test</Col>
+      </Row>
     );
   }
 }
