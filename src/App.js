@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import firebase from "./firebase";
-import { Home, Header } from "./components";
+import { Home, Header, BuildingDetail } from "./components";
 import { Container, Row, Col } from 'reactstrap';
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +35,13 @@ class App extends Component {
 
   render() {
     return (
-      <Container style={{padding: 0}}>
-
-        <Header />
-        <Home />
-      </Container>
+      <Router>
+        <Container fluid style={{padding: 0}}>
+          <Header />
+          <Route exact path="/" component={Home} />
+          <Route exact path='/building/:id' component={BuildingDetail} />
+        </Container>
+      </Router>
     );
   }
 }
