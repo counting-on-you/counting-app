@@ -10,7 +10,7 @@ export class Home extends Component {
 
   render() {
     return (
-      <Row className="justify-content-center">
+      <Row className="justify-content-center" style={{margin:0}}>
         <Col xs="auto">
           <CampusChart {...this.props} title="Campus Total"/>
           <Buildings buildingData={this.props.buildingData} {...this.props}/>
