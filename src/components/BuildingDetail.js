@@ -5,16 +5,34 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 export class BuildingDetail extends Component {
   constructor(props) {
 	super(props);
-	console.log(props);
-    this.state = {};
+
+	this.state = {};
   }
 
   render() {
 	const { match } = this.props;
-    return (
-      <Row className="justify-content-md-center">
-        <Col xs="auto">{match.params.id}</Col>
-      </Row>
-    );
+	let buildingData = this.props.data[match.params.id];
+	
+	if(buildingData) {
+		console.log(buildingData);
+		const floorsData = buildingData.floors;
+		const floorsElement = Object.keys(floorsData).map(f => floorsData[f])
+			.map(floor => {
+				return <p key={floor.name}>{floor.name}</p>
+			});
+		return (
+			<Row className="justify-content-md-center">
+				<Col xs="auto">
+					{ floorsElement }
+				</Col>
+			</Row>
+		);
+	} else {
+		return (
+			<Row className="justify-content-md-center">
+			  <Col xs="auto">Loading ...</Col>
+			</Row>
+		);
+	}
   }
 }
