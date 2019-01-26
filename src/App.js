@@ -26,7 +26,7 @@ class App extends Component {
       this.setState({
         data: val
       });
-      this.aggregatePiData();
+      this.fetchPiData();
       console.log(val);
       this.getBuildingList(val)
     });
@@ -42,14 +42,30 @@ class App extends Component {
     });
   };
 
-  aggregatePiData = () => {
+  fetchPiData = () => {
     let pi_ids = Object.keys(this.state.data).map(bid => this.state.data[bid].pi_ids);
     pi_ids = pi_ids.reduce((prev, current) => {
       let ids = Object.keys(current).filter(n => current[n]);
       return prev.concat(ids);
     }, []);
+    console.log(pi_ids);
     const queries = pi_ids.map(id => this.getPiDataQuery(id));
-    this.setState({ queries });
+    let pi_map = {};
+    let aggregate_campus_data = {};
+    queries.forEach(ref => {
+      ref.on("value", snapshot => {
+        const val = snapshot.val();
+        pi_map[ref.ref.key] = val;
+
+        Object.keys(val).map(ts => {
+          // round down to nearest 10th minute to avoid offset issues
+          const roundedts = Math.floor(Number(ts)/600) * 600;
+          let amount = aggregate_campus_data[roundedts] || 0;
+          aggregate_campus_data[roundedts] = amount + val[ts].length;
+        })
+        console.log(aggregate_campus_data);
+      })
+    })
   }
 
   getPiDataQuery = (piid, options) => {
