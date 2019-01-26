@@ -1,11 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  ListGroup,
-  ListGroupItem
-} from "reactstrap";
+import { Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import { InlineChart } from "./";
 
@@ -30,11 +24,13 @@ export class Buildings extends Component {
                   <ListGroupItem key={building.id}>
                     <Link to={`/building/${building.id}`}>
                       <div className="d-flex flex-direction-row justify-content-between align-items-center">
-                        <div style={{ maxWidth: 200 }}>{building.name}</div>
-                        <div>
-                          <InlineChart data={building.data}/>
+                        <div className="d-flex flex-column">
+                          <div>{building.name}</div>
+                          <small className="text-muted">Busy</small>
                         </div>
-                        <div>Busy</div>
+                        <div>
+                          <InlineChart data={building.data} />
+                        </div>
                       </div>
                     </Link>
                   </ListGroupItem>
