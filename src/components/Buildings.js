@@ -22,25 +22,39 @@ export class Buildings extends Component {
 
   render() {
     const { buildingData } = this.props;
-    const buildingNames = Object.keys(buildingData).map(buildingName => {
-        return buildingData.buildingData.name;
-    })
-    console.log(buildingNames)
-    return (
-      <Container>
-        <Row id="title">Buildings</Row>
-        <Row>
-          <ListGroup className="w-100">
-            <ListGroupItem>
-              <div className="d-flex flex-direction-row justify-content-between">
-                <div style={{maxWidth: 200}}>Sennott Sq</div>
-                <div>Chart</div>
-                <div>Busy</div>
-              </div>
-            </ListGroupItem>
-          </ListGroup>
-        </Row>
-      </Container>
-    );
+    console.log(buildingData);
+    if (buildingData) {
+      const buildingNames = Object.keys(buildingData).map(buildingName => {
+        return {...buildingData[buildingName], id: buildingName};
+      });
+      console.log(buildingNames);
+      return (
+        <Container>
+          <Row id="title">Buildings</Row>
+          <Row>
+            <ListGroup className="w-100">
+              {buildingNames.map(building => {
+                return (
+                  <ListGroupItem key={building.id}>
+                    <div className="d-flex flex-direction-row justify-content-between">
+                      <div style={{ maxWidth: 200 }}>{building.name}</div>
+                      <div>Chart</div>
+                      <div>Busy</div>
+                    </div>
+                  </ListGroupItem>
+                );
+              })}
+            </ListGroup>
+          </Row>
+        </Container>
+      );
+    } else {
+      return (
+        <Container>
+          <Row id="title">Buildings</Row>
+          <Row>No data yet</Row>
+        </Container>
+      );
+    }
   }
 }

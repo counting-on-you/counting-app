@@ -9,11 +9,12 @@ export class Home extends Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <Row className="justify-content-center">
         <Col xs="auto">
-          <CampusChart />
-          <Buildings/>
+          <CampusChart {...this.props}/>
+          <Buildings buildingData={this.props.data} {...this.props}/>
         </Col>
       </Row>
     );

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import firebase from "./firebase";
 import { Home, Header, BuildingDetail } from "./components";
@@ -24,6 +23,7 @@ class App extends Component {
     const ref = this.ref;
     ref.on("value", snapshot => {
       const val = snapshot.val();
+      console.log(val)
       this.setState({
         data: val
       });
@@ -36,7 +36,7 @@ class App extends Component {
         <Container fluid style={{padding: 0}}>
           <Header />
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" render={props => <Home {...props} data={this.state.data} />} />
             <Route exact path='/building/:id'
               render={props => <BuildingDetail {...props} data={this.state.data} />}
             />
