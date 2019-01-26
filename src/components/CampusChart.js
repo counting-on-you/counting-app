@@ -1,11 +1,18 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import firebase from "./firebase";
-import { Home, Header } from "./components";
-import { Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  CardLink,
+  Button
+} from "reactstrap";
 
-class App extends Component {
+export class CampusChart extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,27 +20,22 @@ class App extends Component {
 
   render() {
     return (
-      <Container style={{ padding: 0 }}>
-        <Card>
-          <CardBody>
-            <CardTitle>Card title</CardTitle>
-            <CardSubtitle>Card subtitle</CardSubtitle>
+      <Container>
+        <Card className="w-100">
+          <CardBody className="w-100">
+            <CardTitle>Campus Total</CardTitle>
           </CardBody>
-          <img
-            width="100%"
-            src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-            alt="Card image cap"
-          />
+          <div className="d-flex justify-content-center w-100">Chart goes here</div>
           <CardBody>
-            <CardText>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </CardText>
+            <div className="d-flex flex-row">
+              <Button style={{marginRight: 5, marginLeft: 5}} href="#">1M</Button>
+              <Button style={{marginRight: 5, marginLeft: 5}} href="#">1W</Button>
+              <Button style={{marginRight: 5, marginLeft: 5}} href="#">1D</Button>
+              <Button style={{marginRight: 5, marginLeft: 5}} href="#">1H</Button>
+            </div>
           </CardBody>
         </Card>
       </Container>
     );
   }
 }
-
-export default App;
