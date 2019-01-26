@@ -13,7 +13,7 @@ export class Home extends Component {
     return (
       <Row className="justify-content-center">
         <Col xs="auto">
-          <CampusChart {...this.props}/>
+          <CampusChart {...this.props} title="Campus Total"/>
           <Buildings buildingData={this.props.data} {...this.props}/>
         </Col>
       </Row>

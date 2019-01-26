@@ -27,7 +27,7 @@ export class CampusChart extends Component {
       <Container>
         <Card className="w-100">
           <CardBody className="w-100">
-            <CardTitle>Campus Total</CardTitle>
+            <CardTitle>{this.props.title}</CardTitle>
           </CardBody>
           <div className="d-flex justify-content-center w-100">
             <LineChart/>
