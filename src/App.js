@@ -10,16 +10,23 @@ class App extends Component {
     this.db = firebase.database();
     this.ref = this.db.ref("/building/");
     // console.log(this.ref);
-    this.setState({
+    this.state = {
       data: undefined
-    });
+    };
+    this.syncData();
   }
 
-  getData = async ()  => {
+  syncData = ()  => {
     const ref = this.ref;
-    const snapshot = await ref.once("value");
-    this.setState({
-      data: snapshot.val()
+    ref.on("value", (snapshot) => {
+      const val = snapshot.val();
+      let buildings = Object.keys(val).map(building => {
+        return Object.assign({name: building}, val[building]);
+      });
+      this.setState({
+        data: buildings
+      });
+
     });
   }
 
@@ -30,7 +37,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <p>Counting on you!</p>
 
-        <InfoList data={this.getData()}></InfoList>
+        <InfoList buildings={this.state.data}></InfoList>
         </header>
       </div>
     );
@@ -41,12 +48,21 @@ class App extends Component {
 
 class InfoList extends React.Component {
   render() {
-    const { data } = this.props;
-    console.log(data);
-    if(!data) {
-      return "Loading";
+    const { buildings } = this.props;
+    if(!buildings) {
+      return <div>Loading</div>;
     } else {
-      return <div>test</div>
+      return (
+      <ListGroup>
+        {
+          buildings.map(b => (
+            <ListGroupItem key={b.name}>
+              {b.name}
+            </ListGroupItem>
+          ))
+        }
+      </ListGroup>);
+      
     }
 
   }
