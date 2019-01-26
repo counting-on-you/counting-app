@@ -3,8 +3,11 @@ import "./App.css";
 import firebase from "./firebase";
 import { Home, Header, BuildingDetail } from "./components";
 import { Container, Row, Col } from "reactstrap";
-
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import DataStore from "./Store/DataStore";
+import { Provider } from "mobx-react";
+
+const dataStore = new DataStore();
 
 class App extends Component {
   constructor(props) {
@@ -23,7 +26,7 @@ class App extends Component {
     ref.on("value", snapshot => {
       const val = snapshot.val();
       console.log(val);
-      this.getBuildingList(val)
+      this.getBuildingList(val);
     });
   };
 
@@ -40,23 +43,27 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{flex:1}}>
-          <Header />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => <Home {...props} buildingData={this.state.buildingData} />}
-            />
-            <Route
-              exact
-              path="/building/:id"
-              render={props => (
-                <BuildingDetail {...props} data={this.state.data} />
-              )}
-            />
-          </Switch>
-        </div>
+        <Provider dataStore={dataStore}>
+          <div style={{ flex: 1 }}>
+            <Header />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <Home {...props} buildingData={this.state.buildingData} />
+                )}
+              />
+              <Route
+                exact
+                path="/building/:id"
+                render={props => (
+                  <BuildingDetail {...props} data={this.state.data} />
+                )}
+              />
+            </Switch>
+          </div>
+        </Provider>
       </Router>
     );
   }
