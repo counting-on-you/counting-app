@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import firebase from './firebase';
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import firebase from "./firebase";
+import { Home, Header } from "./components";
 
 class App extends Component {
   constructor(props) {
@@ -16,55 +16,26 @@ class App extends Component {
     this.syncData();
   }
 
-  syncData = ()  => {
+  syncData = () => {
     const ref = this.ref;
-    ref.on("value", (snapshot) => {
+    ref.on("value", snapshot => {
       const val = snapshot.val();
       let buildings = Object.keys(val).map(building => {
-        return Object.assign({name: building}, val[building]);
+        return Object.assign({ name: building }, val[building]);
       });
       this.setState({
         data: buildings
       });
-
     });
-  }
+  };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Counting on you!</p>
-
-        <InfoList buildings={this.state.data}></InfoList>
-        </header>
+      <div style={{ flex: 1 }}>
+        <Header />
+        <Home />
       </div>
     );
-  }
-}
-
-
-
-class InfoList extends React.Component {
-  render() {
-    const { buildings } = this.props;
-    if(!buildings) {
-      return <div>Loading</div>;
-    } else {
-      return (
-      <ListGroup>
-        {
-          buildings.map(b => (
-            <ListGroupItem key={b.name}>
-              {b.name}
-            </ListGroupItem>
-          ))
-        }
-      </ListGroup>);
-      
-    }
-
   }
 }
 
