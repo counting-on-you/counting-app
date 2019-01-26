@@ -16,7 +16,7 @@ export class Buildings extends Component {
       console.log(buildingData);
       return (
         <Col>
-          <Row id="title">Buildings</Row>
+          <Row id="title" className ="justify-content-center" style = {{marginTop: 10, marginBottom: 2}}>Buildings</Row>
           <Row>
             <ListGroup className="w-100">
               {buildingData.map(building => {
