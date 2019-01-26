@@ -9,7 +9,6 @@ export class Home extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <Row className="justify-content-center">
         <Col xs="auto">
