@@ -1,11 +1,6 @@
 import React from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "reactstrap";
+import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Form, FormGroup, Label, Input } from "reactstrap";
+import { FaSearch } from "react-icons/fa";
 
 export class Header extends React.Component {
   constructor(props) {
@@ -22,15 +17,32 @@ export class Header extends React.Component {
     });
   }
   render() {
+    const { isOpen } = this.state;
     return (
       <div>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">reactstrap</NavbarBrand>
-          <Nav className="ml-auto" navbar>
+          <Nav className="ml-auto"  style={{ alignItems: 'center'}} navbar>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
-                GitHub
-              </NavLink>
+              {isOpen ? (
+                <Form>
+                  <FormGroup>
+                    <Input
+                      type="text"
+                      name="search"
+                      id="search"
+                      placeholder="Search for a building"
+                      onBlur={() => {this.setState({ isOpen: false })}}
+                    />
+                  </FormGroup>
+                </Form>
+              ) : (
+                <FaSearch
+                  onClick={() => {
+                    this.setState({ isOpen: true });
+                  }}
+                />
+              )}
             </NavItem>
           </Nav>
         </Navbar>

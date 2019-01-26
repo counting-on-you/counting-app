@@ -32,7 +32,8 @@ class App extends Component {
 
   render() {
     return (
-      <Container fluid={true}>
+      <Container style={{padding: 0}}>
+
         <Header />
         <Home />
       </Container>
