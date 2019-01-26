@@ -5,6 +5,7 @@ import { CampusChart } from "./CampusChart";
 import { Buildings } from "./Buildings";
 import { LineChart } from "./LineChart";
 import { FloorList } from "./FloorList";
+import { InlineChart}  from './InlineChart'
 
 export {
   Home,
@@ -13,5 +14,6 @@ export {
   Buildings,
   BuildingDetail,
   LineChart,
-  FloorList
+  FloorList,
+  InlineChart
 };

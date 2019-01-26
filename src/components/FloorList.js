@@ -36,7 +36,7 @@ export class FloorList extends Component {
       }); */
       console.log(floorData);
       return (
-        <Container>
+        <Col>
           <Row id="title">Floors</Row>
           <Row>
             <ListGroup className="w-100">
@@ -52,14 +52,14 @@ export class FloorList extends Component {
               </ListGroupItem>
             </ListGroup>
           </Row>
-        </Container>
+        </Col>
       );
     } else {
       return (
-        <Container>
+        <Col>
           <Row id="title">Floors</Row>
           <Row>No data yet</Row>
-        </Container>
+        </Col>
       );
     }
   }

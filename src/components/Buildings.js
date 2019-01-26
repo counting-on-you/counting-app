@@ -14,7 +14,7 @@ import {
   ListGroupItem
 } from "reactstrap";
 import { Link } from "react-router-dom";
-
+import { InlineChart } from "./";
 
 export class Buildings extends Component {
   constructor(props) {
@@ -26,41 +26,37 @@ export class Buildings extends Component {
     const { buildingData } = this.props;
     console.log(buildingData);
     if (buildingData) {
-      const buildingNames = Object.keys(buildingData).map(buildingName => {
-        return {...buildingData[buildingName], id: buildingName};
-      });
-      console.log(buildingNames);
+      console.log(buildingData);
       return (
-        <Container>
+        <Col>
           <Row id="title">Buildings</Row>
           <Row>
-            
             <ListGroup className="w-100">
-              {buildingNames.map(building => {
+              {buildingData.map(building => {
                 return (
-                 
-                    <ListGroupItem key={building.id}>
-                        <Link to={`/building/${building.id}`}>
-                          <div className="d-flex flex-direction-row justify-content-between">
-                            <div style={{ maxWidth: 200 }}>{building.name}</div>
-                            <div>Chart</div>
-                            <div>Busy</div>
-                          </div>
-                        </Link>
-                    </ListGroupItem>
-                  
+                  <ListGroupItem key={building.id}>
+                    <Link to={`/building/${building.id}`}>
+                      <div className="d-flex flex-direction-row justify-content-between align-items-center">
+                        <div style={{ maxWidth: 200 }}>{building.name}</div>
+                        <div>
+                          <InlineChart data={building.data}/>
+                        </div>
+                        <div>Busy</div>
+                      </div>
+                    </Link>
+                  </ListGroupItem>
                 );
               })}
             </ListGroup>
           </Row>
-        </Container>
+        </Col>
       );
     } else {
       return (
-        <Container>
+        <Col>
           <Row id="title">Buildings</Row>
           <Row>No data yet</Row>
-        </Container>
+        </Col>
       );
     }
   }
