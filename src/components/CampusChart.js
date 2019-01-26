@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import {
   Container,
-  Row,
-  Col,
   Card,
   CardBody,
   CardTitle,
-  CardSubtitle,
-  CardText,
-  CardLink,
   Button
 } from "reactstrap";
 import { LineChart } from './'
@@ -16,6 +11,7 @@ import { LineChart } from './'
 export class CampusChart extends Component {
   constructor(props) {
     super(props);
+    // this.props.getPiDataQuery();
     this.state = {
       selected: 3
     };
@@ -36,7 +32,7 @@ export class CampusChart extends Component {
             <div className="d-flex flex-row">
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected == 0 ? "primary" : "link"}
+                color={selected === 0 ? "primary" : "link"}
                 onClick={() => {this.setState({
                     selected: 0
                 })}}
@@ -45,7 +41,7 @@ export class CampusChart extends Component {
               </Button>
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected == 1 ? "primary" : "link"}
+                color={selected === 1 ? "primary" : "link"}
                 onClick={() => {this.setState({
                     selected: 1
                 })}}
@@ -54,7 +50,7 @@ export class CampusChart extends Component {
               </Button>
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected == 2 ? "primary" : "link"}
+                color={selected === 2 ? "primary" : "link"}
                 onClick={() => {this.setState({
                     selected: 2
                 })}}
@@ -63,7 +59,7 @@ export class CampusChart extends Component {
               </Button>
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected == 3 ? "primary" : "link"}
+                color={selected === 3 ? "primary" : "link"}
                 onClick={() => {this.setState({
                     selected: 3
                 })}}

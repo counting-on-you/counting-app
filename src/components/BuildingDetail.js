@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "reactstrap";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { CampusChart, FloorList } from "./";
 
 export class BuildingDetail extends Component {

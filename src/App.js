@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import "./App.css";
 import firebase from "./firebase";
 import { Home, Header, BuildingDetail } from "./components";
-import { Container, Row, Col } from 'reactstrap';
+import { Container } from 'reactstrap';
 
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 class App extends Component {
@@ -27,8 +27,19 @@ class App extends Component {
       this.setState({
         data: val
       });
+      this.aggregatePiData();
     });
   };
+
+  aggregatePiData = () => {
+    let pi_ids = Object.keys(this.state.data).map(bid => this.state.data[bid].pi_ids);
+    pi_ids = pi_ids.reduce((prev, current) => {
+      let ids = Object.keys(current).filter(n => current[n]);
+      return prev.concat(ids);
+    }, []);
+    const queries = pi_ids.map(id => this.getPiDataQuery(id));
+    this.setState({ queries });
+  }
 
   getPiDataQuery = (piid, options) => {
     const NOW_SECONDS = Date.now()/1000;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Form, FormGroup, Label, Input } from "reactstrap";
+import { Navbar, NavbarBrand, Nav, NavItem, Form, FormGroup, Input } from "reactstrap";
 import { FaSearch } from "react-icons/fa";
 
 export class Header extends React.Component {

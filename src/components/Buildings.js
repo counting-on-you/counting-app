@@ -2,14 +2,6 @@ import React, { Component } from "react";
 import {
   Container,
   Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  CardLink,
-  Button,
   ListGroup,
   ListGroupItem
 } from "reactstrap";
