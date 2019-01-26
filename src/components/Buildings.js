@@ -13,6 +13,8 @@ import {
   ListGroup,
   ListGroupItem
 } from "reactstrap";
+import { Link } from "react-router-dom";
+
 
 export class Buildings extends Component {
   constructor(props) {
@@ -32,16 +34,21 @@ export class Buildings extends Component {
         <Container>
           <Row id="title">Buildings</Row>
           <Row>
+            
             <ListGroup className="w-100">
               {buildingNames.map(building => {
                 return (
-                  <ListGroupItem key={building.id}>
-                    <div className="d-flex flex-direction-row justify-content-between">
-                      <div style={{ maxWidth: 200 }}>{building.name}</div>
-                      <div>Chart</div>
-                      <div>Busy</div>
-                    </div>
-                  </ListGroupItem>
+                 
+                    <ListGroupItem key={building.id}>
+                        <Link to={`/building/${building.id}`}>
+                          <div className="d-flex flex-direction-row justify-content-between">
+                            <div style={{ maxWidth: 200 }}>{building.name}</div>
+                            <div>Chart</div>
+                            <div>Busy</div>
+                          </div>
+                        </Link>
+                    </ListGroupItem>
+                  
                 );
               })}
             </ListGroup>
