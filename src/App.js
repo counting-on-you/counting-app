@@ -5,7 +5,7 @@ import firebase from "./firebase";
 import { Home, Header, BuildingDetail } from "./components";
 import { Container, Row, Col } from 'reactstrap';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
     this.ref = this.db.ref("/building/");
     // console.log(this.ref);
     this.state = {
-      data: undefined
+      data: {}
     };
     this.syncData();
   }
@@ -24,11 +24,8 @@ class App extends Component {
     const ref = this.ref;
     ref.on("value", snapshot => {
       const val = snapshot.val();
-      let buildings = Object.keys(val).map(building => {
-        return Object.assign({ name: building }, val[building]);
-      });
       this.setState({
-        data: buildings
+        data: val
       });
     });
   };
@@ -38,8 +35,12 @@ class App extends Component {
       <Router>
         <Container fluid style={{padding: 0}}>
           <Header />
-          <Route exact path="/" component={Home} />
-          <Route exact path='/building/:id' component={BuildingDetail} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path='/building/:id'
+              render={props => <BuildingDetail {...props} data={this.state.data} />}
+            />
+          </Switch>
         </Container>
       </Router>
     );
