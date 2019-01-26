@@ -13,7 +13,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.db = firebase.database();
-    this.ref = this.db.ref("/building/");
+    this.buildingRef = this.db.ref("/building/");
     // console.log(this.ref);
     this.state = {
       data: null
@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   syncData = () => {
-    const ref = this.ref;
+    console.log(`Called syncData`)
+    const ref = this.buildingRef;
     ref.on("value", snapshot => {
       const val = snapshot.val();
       console.log(val)
@@ -78,7 +79,7 @@ class App extends Component {
     const WEEK_SECONDS = DAY_SECONDS * 7;
     const MONTH_SECONDS = WEEK_SECONDS * 31;
     const lastTime = NOW_SECONDS - HOUR_SECONDS; 
-    return this.db.ref(`/data/${piid}`).orderByKey().endAt(""+lastTime);
+    return this.db.ref(`/data/`).child(piid).orderByKey().endAt(""+lastTime);
   }
 
   render() {
