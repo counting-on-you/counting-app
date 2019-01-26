@@ -30,7 +30,7 @@ export class CampusChart extends Component {
             <LineChart/>
           </div>
           <CardBody>
-            <div className="d-flex flex-row justify-content-center">
+            <div className="d-flex flex-row-reverse justify-content-center">
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 0 ? "primary" : "link"}
