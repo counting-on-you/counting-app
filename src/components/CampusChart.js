@@ -29,8 +29,7 @@ class CampusChart extends Component {
     return (
       <Col style={{paddingLeft:0, paddingRight:0}}>
         <Card
-          className="w-100"
-          className='color-lightgray'
+          className="w-100 color-lightgray"
         >
           <CardBody className="w-100">
             <CardTitle className='font-white' style={{fontSize: 20}}>{this.props.title}</CardTitle>
