@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/counting-app/static/js/runtime~main.793ddc72.js"
   },
   {
-    "revision": "03dda7137a94d14abb1d",
-    "url": "/counting-app/static/js/main.03dda713.chunk.js"
+    "revision": "479bd922d89430db2557",
+    "url": "/counting-app/static/js/main.479bd922.chunk.js"
   },
   {
     "revision": "5ba2b5ad22acc7f9efff",
     "url": "/counting-app/static/js/1.5ba2b5ad.chunk.js"
   },
   {
-    "revision": "03dda7137a94d14abb1d",
+    "revision": "479bd922d89430db2557",
     "url": "/counting-app/static/css/main.f8002aa6.chunk.css"
   },
   {
-    "revision": "0e434b44b88f9b2bd875c304083003af",
+    "revision": "006618e3c2286a95b91b3483a90048fa",
     "url": "/counting-app/index.html"
   }
 ];
