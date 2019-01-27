@@ -12,7 +12,8 @@ export default class DataStore {
       counter: 0,
       uniqueCount: 0,
       ids: {},
-      data: {}
+      data: {},
+      chartData: []
     }
   };
 
@@ -25,11 +26,15 @@ export default class DataStore {
     agg.uniqueCount = Object.keys(agg.ids);
     Object.keys(timestampData).forEach(ts => {
       // round down to nearest 10th minute to avoid offset issues
-      const roundedts = Math.floor(Number(ts)/600) * 600;
+      const roundedts = Math.floor(Number(ts)/60) * 60;
       let amount = agg.data[roundedts] || 0;
       agg.data[roundedts] = amount + timestampData[ts].length;
     })
 
-    this.aggregate = {...this.aggregate, campus: agg };
+    agg.chartData = Object.keys(agg.data).map(ts => {
+      return { x: ts, y: agg.data[ts] };
+    });
+
+    this.aggregate = {...this.aggregate, [id]: agg };
   }
 }

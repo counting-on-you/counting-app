@@ -17,15 +17,7 @@ class CampusChart extends Component {
 
   render() {
     const { selected } = this.state;
-    const data = this.props.dataStore.aggregate.campus.data;
-    let chartData;
-
-    if(data) {
-      chartData = Object.keys(data).map(ts => {
-        return { x: ts, y: data[ts] };
-      });
-      console.log(chartData);
-    }
+    const chartData = [...this.props.dataStore.aggregate.campus.chartData];
 
     return (
       <Col>
