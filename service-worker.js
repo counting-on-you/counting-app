@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/counting-app/precache-manifest.6170fdcf9aeee564a03352d739118793.js"
+  "/counting-app/precache-manifest.7f2ef2284eee15cffe3d13b7609b9bd6.js"
 );
 
 workbox.clientsClaim();
