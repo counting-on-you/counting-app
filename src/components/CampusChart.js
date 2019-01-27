@@ -11,7 +11,7 @@ class CampusChart extends Component {
     super(props);
     
     this.state = {
-      selected: 3
+      selected: 0
     };
   }
 
@@ -29,31 +29,20 @@ class CampusChart extends Component {
             className="d-flex justify-content-center w-100"
             style={{ paddingRight: 10, paddingLeft: 10 }}
           >
-            <LineChart data={chartData} />
+            <LineChart data={chartData} selected={selected} />
           </div>
           <CardBody>
             <div className="d-flex flex-row-reverse justify-content-center">
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 0 ? "primary" : "link"}
+                color={selected === 3 ? "primary" : "link"}
                 onClick={() => {
                   this.setState({
-                    selected: 0
+                    selected: 3
                   });
                 }}
               >
                 1M
-              </Button>
-              <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 1 ? "primary" : "link"}
-                onClick={() => {
-                  this.setState({
-                    selected: 1
-                  });
-                }}
-              >
-                1W
               </Button>
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
@@ -64,14 +53,25 @@ class CampusChart extends Component {
                   });
                 }}
               >
+                1W
+              </Button>
+              <Button
+                style={{ marginRight: 5, marginLeft: 5 }}
+                color={selected === 1 ? "primary" : "link"}
+                onClick={() => {
+                  this.setState({
+                    selected: 1
+                  });
+                }}
+              >
                 1D
               </Button>
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 3 ? "primary" : "link"}
+                color={selected === 0 ? "primary" : "link"}
                 onClick={() => {
                   this.setState({
-                    selected: 3
+                    selected: 0
                   });
                 }}
               >
