@@ -11,7 +11,7 @@ export class LineChart extends React.Component {
             labels: data,
             datasets: [
               {
-                label: "My First dataset",
+                label: "Timestamp",
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "rgba(75,192,192,0.4)",

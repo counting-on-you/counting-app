@@ -23,7 +23,8 @@ class CampusChart extends Component {
     if(data) {
       chartData = Object.keys(data).map(ts => {
         return { x: ts, y: data[ts] };
-      })
+      });
+      console.log(chartData);
     }
 
     return (
