@@ -7,7 +7,7 @@ import {
   ListGroupItem,
   Collapse
 } from "reactstrap";
-import { CampusChart } from ".";
+import { CampusChart, InlineChart, FloorItem } from "./";
 
 export class FloorList extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ export class FloorList extends Component {
 
   render() {
     const { floorData } = this.props;
+    const { collapse } = this.state;
     console.log(floorData);
     if (floorData || 1) {
       /*
@@ -32,20 +33,10 @@ export class FloorList extends Component {
         <Col>
           <Row id="title">Floors</Row>
           <Row>
-            <ListGroup className="w-100">
-              <ListGroupItem>
-                <div
-                  className="d-flex flex-direction-row justify-content-between"
-                  onClick={this.toggle}
-                >
-                  <div style={{ maxWidth: 200 }}>Floor 1</div>
-                  <div>Chart</div>
-                  <div>Busy</div>
-                </div>
-                <Collapse isOpen={this.state.collapse}>
-                  <CampusChart />
-                </Collapse>
-              </ListGroupItem>
+            <ListGroup>
+              {floorData.map(floor => {
+                return <FloorItem floorName="Floor1" floorStatus="Busy" />;
+              })}
             </ListGroup>
           </Row>
         </Col>

@@ -4,7 +4,7 @@ import moment from "moment";
 
 export class LineChart extends React.Component {
   formatDate = (date, mode) => {
-    const d = Number(date) * 1000
+    const d = Number(date) * 1000;
     if (mode == 0) {
       return moment(d).format("h:mma");
     }
@@ -24,49 +24,48 @@ export class LineChart extends React.Component {
     return moment(d).format("h:mma");
   };
 
-
   filterData = (data, mode) => {
-    const NOW_SECONDS = Math.floor(Date.now()/1000);
+    const NOW_SECONDS = Math.floor(Date.now() / 1000);
     const HOUR_SECONDS = 60 * 60;
-    const DAY_SECONDS =   HOUR_SECONDS* 24;
+    const DAY_SECONDS = HOUR_SECONDS * 24;
     const WEEK_SECONDS = DAY_SECONDS * 7;
     const MONTH_SECONDS = WEEK_SECONDS * 31;
     let startTime = NOW_SECONDS;
 
     if (mode == 0) {
-        startTime = NOW_SECONDS - HOUR_SECONDS; 
+      startTime = NOW_SECONDS - HOUR_SECONDS;
     }
 
     if (mode == 1) {
-      startTime = NOW_SECONDS - DAY_SECONDS; 
+      startTime = NOW_SECONDS - DAY_SECONDS;
     }
 
     if (mode == 2) {
-      startTime = NOW_SECONDS - WEEK_SECONDS; 
+      startTime = NOW_SECONDS - WEEK_SECONDS;
     }
 
     if (mode == 3) {
-      startTime = NOW_SECONDS - MONTH_SECONDS; 
+      startTime = NOW_SECONDS - MONTH_SECONDS;
     }
 
     return data.filter(point => {
-      return Number(point.x) > startTime
-    })
+      return Number(point.x) > startTime;
+    });
   };
 
   render() {
     const d = this.props.data;
     const mode = this.props.selected;
-    const data = this.filterData(d, mode)
+    const data = this.filterData(d, mode);
 
-
-
-    // console.log(data)
-    // console.log(
-    //   data.map(point => {
-    //     return this.formatDate(point.x, mode);
-    //   })
-    // );
+    /*
+    console.log(data);
+    console.log(
+      data.map(point => {
+        return this.formatDate(point.x, mode);
+      })
+    );
+    */
     return (
       <div>
         <Line
