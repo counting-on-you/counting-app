@@ -1,36 +1,64 @@
 import React, { Component } from "react";
-import { Container, Card, CardBody, CardTitle, Button, Col } from "reactstrap";
-import { LineChart } from "./";
+import {
+    Button,
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  ListGroupItem,
+  Collapse
+} from "reactstrap";
+import { InlineChart, LineChart } from "./";
 import { inject, observer } from "mobx-react";
 import { toJS } from 'mobx';
 
 @inject("dataStore")
 @observer
-class CampusChart extends Component {
+class FloorItem extends Component {
   constructor(props) {
     super(props);
-    
-    this.state = {
-      selected: 0
-    };
+    this.state = { collapse: false };
   }
 
+  toggle = () => {
+    this.setState({ collapse: !this.state.collapse });
+  };
+
   render() {
-    const { selected } = this.state;
-    const chartData = [...this.props.dataStore.aggregate.campus.chartData];
+    const { collapse, selected } = this.state;
+    const { floorData, floorStatus } = this.props;
+    const floorName = floorData.name;
+    const fid = floorData.id;
+
+    const chartData = this.props.dataStore.aggregate[fid] ? [...this.props.dataStore.aggregate[fid].chartData] : [];
     return (
       <Col>
-        <Card className="w-100 ">
-          <CardBody className="w-100">
-            <CardTitle>{this.props.title}</CardTitle>
-          </CardBody>
-          <div
+        <Row>
+          <ListGroup className="w-100">
+            <ListGroupItem>
+              <div
+                className="d-flex flex-direction-row justify-content-between"
+                onClick={this.toggle}
+              >
+                <div className="d-flex flex-column">
+                  <div>{floorName}</div>
+                  {collapse ? null : <div className="text-muted">Busy</div>}
+                </div>
+                <div>
+                  {!collapse ? (
+                    <InlineChart data={chartData} />
+                  ) : (
+                    <small className="text-muted">{floorStatus}</small>
+                  )}
+                </div>
+              </div>
+              <Collapse isOpen={collapse}>
+              <div
             className="d-flex justify-content-center w-100"
             style={{ paddingRight: 10, paddingLeft: 10 }}
           >
             <LineChart data={chartData} selected={selected} />
           </div>
-          <CardBody>
             <div className="d-flex flex-row-reverse justify-content-center">
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
@@ -77,11 +105,13 @@ class CampusChart extends Component {
                 1H
               </Button>
             </div>
-          </CardBody>
-        </Card>
+              </Collapse>
+            </ListGroupItem>
+          </ListGroup>
+        </Row>
       </Col>
     );
   }
 }
 
-export { CampusChart };
+export { FloorItem };

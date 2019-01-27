@@ -7,7 +7,7 @@ import {
   ListGroupItem,
   Collapse
 } from "reactstrap";
-import { CampusChart } from ".";
+import { CampusChart, InlineChart, FloorItem } from "./";
 
 export class FloorList extends Component {
   constructor(props) {
@@ -20,38 +20,35 @@ export class FloorList extends Component {
   };
 
   render() {
-    const { floorData } = this.props;
+    const { floorData, bid} = this.props;
+    const { collapse } = this.state;
+
     console.log(floorData);
-    if (floorData || 1) {
+    if (floorData) {
       /*
       const buildingNames = Object.keys(buildingData).map(buildingName => {
         return {...buildingData[buildingName], id: buildingName};
       }); */
       console.log(floorData);
       return (
-        <Col>
+        <>
           <Row id="title">Floors</Row>
           <Row>
-            <ListGroup className="w-100">
-              <ListGroupItem >
-                <div className="d-flex flex-direction-row justify-content-between" onClick={this.toggle}>
-                  <div style={{ maxWidth: 200 }}>Floor 1</div>
-                  <div>Chart</div>
-                  <div>Busy</div>
-                </div>
-                <Collapse isOpen={this.state.collapse}>
-                  
-                </Collapse>
-              </ListGroupItem>
-            </ListGroup>
+            <Col>
+                <ListGroup>
+                  {Object.keys(floorData).map(floorId => {
+                    return <FloorItem key={floorId} floorData={{...floorData[floorId], id: bid+"_"+floorId }} floorStatus="Busy" />;
+                  })}
+                </ListGroup>
+            </Col>
           </Row>
-        </Col>
+        </>
       );
     } else {
       return (
         <Col>
           <Row id="title">Floors</Row>
-          <Row>No data yet</Row>
+          <Row>Loading ...</Row>
         </Col>
       );
     }

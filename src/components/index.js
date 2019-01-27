@@ -6,6 +6,7 @@ import { Buildings } from "./Buildings";
 import { LineChart } from "./LineChart";
 import { FloorList } from "./FloorList";
 import { InlineChart}  from './InlineChart'
+import { FloorItem } from './FloorItem'
 
 export {
   Home,
@@ -15,5 +16,6 @@ export {
   BuildingDetail,
   LineChart,
   FloorList,
-  InlineChart
+  InlineChart,
+  FloorItem
 };
