@@ -17,7 +17,15 @@ class CampusChart extends Component {
 
   render() {
     const { selected } = this.state;
-    const chartData = [...this.props.dataStore.aggregate.campus.chartData];
+    const { id } = this.props;
+    let chartData;
+
+    if(id && this.props.dataStore.aggregate[id]) {
+      chartData = [...this.props.dataStore.aggregate[id].chartData];
+    } else {
+      chartData = [...this.props.dataStore.aggregate.campus.chartData];
+    }
+    
     return (
       <Col style={{paddingLeft:0, paddingRight:0}}>
         <Card

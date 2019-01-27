@@ -21,7 +21,7 @@ export class BuildingDetail extends Component {
 
       return (
         <Col style={{marginTop: 10, paddingBottom: 10}}>
-          <CampusChart {...this.props} />
+          <CampusChart {...this.props} id={match.params.id}/>
 					<FloorList floorData={floorsData} bid={match.params.id} />
         </Col>
       );
