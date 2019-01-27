@@ -19,9 +19,15 @@ export default class DataStore {
 
   @action
   aggregateTimestamps = (timestampData, id) => {
-    let agg = this.aggregate[id];
+    let agg = this.aggregate[id] || {
+      counter: 0,
+      uniqueCount: 0,
+      ids: {},
+      data: {},
+      chartData: []
+    };
 
-    agg.counter ++;
+    agg.counter++;
     agg.ids[id] = true;
     agg.uniqueCount = Object.keys(agg.ids);
     Object.keys(timestampData).forEach(ts => {

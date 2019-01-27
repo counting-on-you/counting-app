@@ -18,7 +18,6 @@ class CampusChart extends Component {
   render() {
     const { selected } = this.state;
     const chartData = [...this.props.dataStore.aggregate.campus.chartData];
-
     return (
       <Col>
         <Card className="w-100 ">
