@@ -32,7 +32,7 @@ export default class DataStore {
     agg.uniqueCount = Object.keys(agg.ids);
     Object.keys(timestampData).forEach(ts => {
       // round down to nearest 10th minute to avoid offset issues
-      const roundedts = Math.floor(Number(ts)/60) * 60;
+      const roundedts = Math.floor(Number(ts)/600) * 600;
       let amount = agg.data[roundedts] || 0;
       agg.data[roundedts] = amount + timestampData[ts].length;
     })
