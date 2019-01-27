@@ -12,24 +12,17 @@ export class BuildingDetail extends Component {
 
   render() {
     const { match } = this.props;
-    let buildingData = this.props.data[match.params.id];
+    let buildingData = this.props.data ? this.props.data[match.params.id] : null;
 
     if (buildingData) {
       console.log(buildingData);
       const floorsData = buildingData.floors;
-      const floorsElement = Object.keys(floorsData)
-        .map(f => floorsData[f])
-        .map(floor => {
-          return <p key={floor.name}>{floor.name}</p>;
-        });
+
 
       return (
         <Col>
           <CampusChart {...this.props} />
-					<FloorList />
-          <Row className="justify-content-md-center">
-            <Col xs="auto">{floorsElement}</Col>
-          </Row>
+					<FloorList floorData={floorsData} bid={match.params.id} />
         </Col>
       );
     } else {

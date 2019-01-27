@@ -78,7 +78,7 @@ class App extends Component {
           dataStore.aggregateTimestamps(val, pi_id.bid);
           dataStore.aggregateTimestamps(val, "campus");
         
-          console.log(toJS(dataStore.aggregate));
+          // console.log(toJS(dataStore.aggregate));
         }
       })
     })

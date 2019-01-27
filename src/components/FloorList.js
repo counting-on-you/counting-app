@@ -20,32 +20,35 @@ export class FloorList extends Component {
   };
 
   render() {
-    const { floorData } = this.props;
+    const { floorData, bid} = this.props;
     const { collapse } = this.state;
+
     console.log(floorData);
-    if (floorData || 1) {
+    if (floorData) {
       /*
       const buildingNames = Object.keys(buildingData).map(buildingName => {
         return {...buildingData[buildingName], id: buildingName};
       }); */
       console.log(floorData);
       return (
-        <Col>
+        <>
           <Row id="title">Floors</Row>
           <Row>
-            <ListGroup>
-              {floorData.map(floor => {
-                return <FloorItem floorName="Floor1" floorStatus="Busy" />;
-              })}
-            </ListGroup>
+            <Col>
+                <ListGroup>
+                  {Object.keys(floorData).map(floorId => {
+                    return <FloorItem key={floorId} floorData={{...floorData[floorId], id: bid+"_"+floorId }} floorStatus="Busy" />;
+                  })}
+                </ListGroup>
+            </Col>
           </Row>
-        </Col>
+        </>
       );
     } else {
       return (
         <Col>
           <Row id="title">Floors</Row>
-          <Row>No data yet</Row>
+          <Row>Loading ...</Row>
         </Col>
       );
     }

@@ -10,19 +10,19 @@ export class InlineChart extends React.Component {
     const MONTH_SECONDS = WEEK_SECONDS * 31;
     let startTime = NOW_SECONDS;
 
-    if (mode == 0) {
+    if (mode === 0) {
       startTime = NOW_SECONDS - HOUR_SECONDS;
     }
 
-    if (mode == 1) {
+    if (mode === 1) {
       startTime = NOW_SECONDS - DAY_SECONDS;
     }
 
-    if (mode == 2) {
+    if (mode === 2) {
       startTime = NOW_SECONDS - WEEK_SECONDS;
     }
 
-    if (mode == 3) {
+    if (mode === 3) {
       startTime = NOW_SECONDS - MONTH_SECONDS;
     }
 

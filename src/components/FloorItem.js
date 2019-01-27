@@ -9,7 +9,11 @@ import {
   Collapse
 } from "reactstrap";
 import { InlineChart, LineChart } from "./";
+import { inject, observer } from "mobx-react";
+import { toJS } from 'mobx';
 
+@inject("dataStore")
+@observer
 class FloorItem extends Component {
   constructor(props) {
     super(props);
@@ -22,11 +26,13 @@ class FloorItem extends Component {
 
   render() {
     const { collapse, selected } = this.state;
-    const { floorName, floorStatus } = this.props;
-    const chartData = []
+    const { floorData, floorStatus } = this.props;
+    const floorName = floorData.name;
+    const fid = floorData.id;
+
+    const chartData = this.props.dataStore.aggregate[fid] ? [...this.props.dataStore.aggregate[fid].chartData] : [];
     return (
       <Col>
-        <Row id="title">Floors</Row>
         <Row>
           <ListGroup className="w-100">
             <ListGroupItem>
@@ -40,7 +46,7 @@ class FloorItem extends Component {
                 </div>
                 <div>
                   {!collapse ? (
-                    <InlineChart data={null} />
+                    <InlineChart data={chartData} />
                   ) : (
                     <small className="text-muted">{floorStatus}</small>
                   )}
