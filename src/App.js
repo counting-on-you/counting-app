@@ -24,11 +24,11 @@ class App extends Component {
   }
 
   syncData = () => {
-    console.log(`Called syncData`)
+    console.log(`Called syncData`);
     const ref = this.buildingRef;
     ref.on("value", snapshot => {
       const val = snapshot.val();
-      console.log(val)
+      console.log(val);
       this.setState({
         data: val
       });
@@ -49,21 +49,21 @@ class App extends Component {
   };
 
   fetchPiData = () => {
-    let pi_ids = []
+    let pi_ids = [];
 
     Object.keys(this.state.data).forEach(bid => {
       const buildingData = this.state.data[bid];
       const floorData = buildingData.floors;
       Object.keys(floorData).forEach(fid => {
         let floor_pi_ids = floorData[fid].pi_ids;
-        if(!floor_pi_ids) return;
-        const currentFloorPiids = Object.keys(floor_pi_ids).map(piid =>( { 
-          piid: piid, 
-          bid: bid, 
-          fid: bid+"_"+fid 
-        }))
+        if (!floor_pi_ids) return;
+        const currentFloorPiids = Object.keys(floor_pi_ids).map(piid => ({
+          piid: piid,
+          bid: bid,
+          fid: bid + "_" + fid
+        }));
         pi_ids = pi_ids.concat(currentFloorPiids);
-      }); 
+      });
     });
 
     dataStore.pi_map = {};
@@ -72,18 +72,18 @@ class App extends Component {
       const ref = this.db.ref(`/data/`).child(pi_id.piid);
       ref.on("value", snapshot => {
         const val = snapshot.val();
-        if(val) {
+        if (val) {
           dataStore.pi_map[pi_id.piid] = val;
           dataStore.aggregateTimestamps(val, pi_id.fid);
           dataStore.aggregateTimestamps(val, pi_id.bid);
           dataStore.aggregateTimestamps(val, "campus");
-        
+
           console.log(toJS(dataStore.aggregate));
           console.log(toJS(dataStore.pi_map));
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   getPiDataQuery = (piid, options) => {
     const NOW_SECONDS = Date.now() / 1000;
@@ -92,28 +92,36 @@ class App extends Component {
     const WEEK_SECONDS = DAY_SECONDS * 7;
     const MONTH_SECONDS = WEEK_SECONDS * 31;
     const lastTime = NOW_SECONDS - HOUR_SECONDS;
-    return this.db.ref(`/data/`).child(piid).orderByKey().endAt("" + lastTime);
-  }
+    return this.db
+      .ref(`/data/`)
+      .child(piid)
+      .orderByKey()
+      .endAt("" + lastTime);
+  };
 
   render() {
     return (
-      <Router>
+      <Router
+        basename={
+          process.env.NODE_ENV !== "production"
+            ? null
+            : "https://counting-on-you.github.io/counting-app/"
+        }
+      >
         <Provider dataStore={dataStore}>
-          <div style={{ flex: 1 }} className='color-darkgray'>
+          <div style={{ flex: 1 }} className="color-darkgray">
             <Header />
             <Switch>
               <Route
-                exact
-                path="/"
-                render={props => (
-                  <Home {...props} buildingData={this.state.buildingData} />
-                )}
-              />
-              <Route
-                exact
                 path="/building/:id"
                 render={props => (
                   <BuildingDetail {...props} data={this.state.data} />
+                )}
+              />
+              <Route
+                path="/"
+                render={props => (
+                  <Home {...props} buildingData={this.state.buildingData} />
                 )}
               />
             </Switch>
