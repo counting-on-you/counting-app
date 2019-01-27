@@ -40,6 +40,9 @@ export class InlineChart extends React.Component {
             legend: {
               display: false
             },
+            tooltips: {
+              enabled: false
+            },
             scales: {
               xAxes: [
                 {
