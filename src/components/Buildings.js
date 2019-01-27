@@ -16,6 +16,8 @@ class Buildings extends Component {
 
   render() {
     const { buildingData } = this.props;
+    const business = Math.random() * 3;
+    const busy = business > 1 ? business > 2 ? "Busy" : "Normal" : "Quiet";
 
     if (buildingData) {
       // const chartData = [...this.props.dataStore.aggregate.campus.chartData.slice()];
@@ -35,7 +37,7 @@ class Buildings extends Component {
                       <div className="d-flex flex-direction-row justify-content-between align-items-center font-white">
                         <div className="d-flex flex-column">
                           <div>{building.name}</div>
-                          <small className="font-busycolor">Busy</small>
+                          <small className="font-busycolor">{busy}</small>
                         </div>
                         <div>
                           <InlineChart data={chartData} />

@@ -29,6 +29,8 @@ class FloorItem extends Component {
     const { floorData, floorStatus } = this.props;
     const floorName = floorData.name;
     const fid = floorData.id;
+    const business = Math.random() * 3;
+    const busy = business > 1 ? business > 2 ? "Busy" : "Normal" : "Quiet";
 
     const chartData = this.props.dataStore.aggregate[fid]
       ? [...this.props.dataStore.aggregate[fid].chartData]
@@ -46,7 +48,7 @@ class FloorItem extends Component {
                   <div>{floorName}</div>
                 </div>
                 <div>
-                  <div className="font-busycolor">{floorStatus}</div>
+                  <div className="font-busycolor">{busy}</div>
                 </div>
               </div>
               <div
