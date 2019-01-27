@@ -33,14 +33,17 @@ export class FloorList extends Component {
           <Row id="title">Floors</Row>
           <Row>
             <ListGroup className="w-100">
-              <ListGroupItem >
-                <div className="d-flex flex-direction-row justify-content-between" onClick={this.toggle}>
+              <ListGroupItem>
+                <div
+                  className="d-flex flex-direction-row justify-content-between"
+                  onClick={this.toggle}
+                >
                   <div style={{ maxWidth: 200 }}>Floor 1</div>
                   <div>Chart</div>
                   <div>Busy</div>
                 </div>
                 <Collapse isOpen={this.state.collapse}>
-                  
+                  <CampusChart />
                 </Collapse>
               </ListGroupItem>
             </ListGroup>
