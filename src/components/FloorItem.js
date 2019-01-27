@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-    Button,
+  Button,
   Container,
   Row,
   Col,
@@ -17,7 +17,7 @@ import { toJS } from 'mobx';
 class FloorItem extends Component {
   constructor(props) {
     super(props);
-    this.state = { collapse: false };
+    this.state = { collapse: false, selected: 0 };
   }
 
   toggle = () => {
@@ -53,58 +53,57 @@ class FloorItem extends Component {
                 </div>
               </div>
               <Collapse isOpen={collapse}>
-              <div
-            className="d-flex justify-content-center w-100"
-            style={{ paddingRight: 10, paddingLeft: 10 }}
-          >
-            <LineChart data={chartData} selected={selected} />
-          </div>
-            <div className="d-flex flex-row-reverse justify-content-center">
-              <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 3 ? "primary" : "link"}
-                onClick={() => {
-                  this.setState({
-                    selected: 3
-                  });
-                }}
-              >
-                1M
-              </Button>
-              <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 2 ? "primary" : "link"}
-                onClick={() => {
-                  this.setState({
-                    selected: 2
-                  });
-                }}
-              >
-                1W
-              </Button>
-              <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 1 ? "primary" : "link"}
-                onClick={() => {
-                  this.setState({
-                    selected: 1
-                  });
-                }}
-              >
-                1D
-              </Button>
-              <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
-                color={selected === 0 ? "primary" : "link"}
-                onClick={() => {
-                  this.setState({
-                    selected: 0
-                  });
-                }}
-              >
-                1H
-              </Button>
-            </div>
+                <div
+                  className="d-flex justify-content-center w-100"
+                  style={{ paddingRight: 10, paddingLeft: 10 }}>
+                  <LineChart data={chartData} selected={selected} />
+                </div>
+                <div className="d-flex flex-row-reverse justify-content-center">
+                  <Button
+                    style={{ marginRight: 5, marginLeft: 5 }}
+                    color={selected === 3 ? "primary" : "link"}
+                    onClick={() => {
+                      this.setState({
+                        selected: 3
+                      });
+                    }}
+                  >
+                    1M
+                  </Button>
+                  <Button
+                    style={{ marginRight: 5, marginLeft: 5 }}
+                    color={selected === 2 ? "primary" : "link"}
+                    onClick={() => {
+                      this.setState({
+                        selected: 2
+                      });
+                    }}
+                  >
+                    1W
+                  </Button>
+                  <Button
+                    style={{ marginRight: 5, marginLeft: 5 }}
+                    color={selected === 1 ? "primary" : "link"}
+                    onClick={() => {
+                      this.setState({
+                        selected: 1
+                      });
+                    }}
+                  >
+                    1D
+                  </Button>
+                  <Button
+                    style={{ marginRight: 5, marginLeft: 5 }}
+                    color={selected === 0 ? "primary" : "link"}
+                    onClick={() => {
+                      this.setState({
+                        selected: 0
+                      });
+                    }}
+                  >
+                    1H
+                  </Button>
+                </div>
               </Collapse>
             </ListGroupItem>
           </ListGroup>

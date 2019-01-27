@@ -27,8 +27,8 @@ class Buildings extends Component {
             <ListGroup className="w-100">
               {buildingData.map(building => {
                 const bid = building.id;
-                let chartData = this.props.dataStore.aggregate[bid] ? [...this.props.dataStore.aggregate[bid].chartData] : [];
-                console.log(toJS(chartData));
+                let chartData = this.props.dataStore.aggregate[bid] ? [...this.props.dataStore.aggregate[bid].chartData ]: [];
+                // console.log(toJS(chartData));
                 return (
                   <ListGroupItem key={bid} className='color-lightgray'>
                     <Link to={`/building/${bid}`}>
