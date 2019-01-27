@@ -1,1 +1,44 @@
 
+.color-darkgray{
+    background-color: #424242
+}
+.color-lightgray{
+    background-color: #616161
+}
+.font-white{
+    color: #ffffff
+}
+.font-busycolor{
+    color: #c0c0c0
+}
+.font-headercolor{
+    color: #000000
+}
+.btn-link,
+.btn-link:hover,
+{
+
+    color: #ffffff
+}
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus{
+    background-color: #B39DDB !important;
+    border-color: #B39DDB !important;
+}
+.btn:hover{
+    color: #ffffff 
+}
+.btn:active{
+    
+    border: #B39DDB !important;
+    box-shadow: 0;
+}
+body{
+    background-color: #424242
+}
+
+
+

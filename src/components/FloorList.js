@@ -32,7 +32,7 @@ export class FloorList extends Component {
       console.log(floorData);
       return (
         <>
-          <Row id="title">Floors</Row>
+          <Row id="title" className="justify-content-center font-white" style={{ marginTop: 10, marginBottom: 2, fontSize: 20}}>Floors</Row>
           <Row>
             <Col>
                 <ListGroup>

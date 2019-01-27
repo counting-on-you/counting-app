@@ -79,14 +79,18 @@ export class LineChart extends React.Component {
                 fill: false,
                 lineTension: 0.2,
                 backgroundColor: "rgba(75,192,192,0.4)",
-                borderColor: "rgba(75,192,192,1)",
+                borderColor: "#B39DDB",
                 borderCapStyle: "round",
                 borderDash: [],
                 borderDashOffset: 0.0,
                 borderJoinStyle: "miter",
-                pointBorderColor: "rgba(75,192,192,1)",
+                pointBorderColor: "#B39DDB",
                 pointBackgroundColor: "#fff",
                 pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "#B39DDB",
+                pointHoverBorderWidth: 2,
                 pointRadius: 1,
                 pointHitRadius: 10,
                 data: data
@@ -104,10 +108,11 @@ export class LineChart extends React.Component {
               xAxes: [
                 {
                   ticks: {
-                    display: true //this will remove only the label
+                    display: true, //this will remove only the label
+                    fontColor: "#c0c0c0"
                   },
                   gridLines: {
-                    color: "rgba(0, 0, 0, 0)"
+                    color: "#424242"
                   }
                 }
               ],
@@ -117,7 +122,7 @@ export class LineChart extends React.Component {
                     display: false //this will remove only the label
                   },
                   gridLines: {
-                    color: "rgba(0, 0, 0, 0)"
+                    color: "#424242"
                   }
                 }
               ]

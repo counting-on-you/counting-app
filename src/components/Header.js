@@ -20,8 +20,8 @@ export class Header extends React.Component {
     const { isOpen } = this.state;
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <Navbar style={{backgroundColor:"#B39DDB"}}>
+          <NavbarBrand href="/" className="font-headercolor">Counting On You</NavbarBrand>
           <Nav className="ml-auto"  style={{ alignItems: 'center'}} navbar>
             <NavItem>
               {isOpen ? (

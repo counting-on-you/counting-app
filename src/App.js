@@ -85,15 +85,20 @@ class App extends Component {
   }
 
   getPiDataQuery = (piid, options) => {
-
-    return 
+    const NOW_SECONDS = Date.now() / 1000;
+    const HOUR_SECONDS = 60 * 60;
+    const DAY_SECONDS = HOUR_SECONDS * 24;
+    const WEEK_SECONDS = DAY_SECONDS * 7;
+    const MONTH_SECONDS = WEEK_SECONDS * 31;
+    const lastTime = NOW_SECONDS - HOUR_SECONDS;
+    return this.db.ref(`/data/`).child(piid).orderByKey().endAt("" + lastTime);
   }
 
   render() {
     return (
       <Router>
         <Provider dataStore={dataStore}>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1 }} className='color-darkgray'>
             <Header />
             <Switch>
               <Route

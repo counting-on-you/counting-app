@@ -9,7 +9,7 @@ import { toJS } from 'mobx';
 class CampusChart extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       selected: 0
     };
@@ -19,10 +19,13 @@ class CampusChart extends Component {
     const { selected } = this.state;
     const chartData = [...this.props.dataStore.aggregate.campus.chartData];
     return (
-      <Col>
-        <Card className="w-100 ">
+      <Col style={{paddingLeft:0, paddingRight:0}}>
+        <Card
+          className="w-100"
+          className='color-lightgray'
+        >
           <CardBody className="w-100">
-            <CardTitle>{this.props.title}</CardTitle>
+            <CardTitle className='font-white' style={{fontSize: 20}}>{this.props.title}</CardTitle>
           </CardBody>
           <div
             className="d-flex justify-content-center w-100"
@@ -33,8 +36,9 @@ class CampusChart extends Component {
           <CardBody>
             <div className="d-flex flex-row-reverse justify-content-center">
               <Button
-                style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 3 ? "primary" : "link"}
+                className='color-lightgray font-white'
+                style={{ marginRight: 5, marginLeft: 5 }}
                 onClick={() => {
                   this.setState({
                     selected: 3
@@ -46,6 +50,7 @@ class CampusChart extends Component {
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 2 ? "primary" : "link"}
+                className='color-lightgray font-white'
                 onClick={() => {
                   this.setState({
                     selected: 2
@@ -57,6 +62,7 @@ class CampusChart extends Component {
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 1 ? "primary" : "link"}
+                className='color-lightgray font-white'
                 onClick={() => {
                   this.setState({
                     selected: 1
@@ -68,6 +74,7 @@ class CampusChart extends Component {
               <Button
                 style={{ marginRight: 5, marginLeft: 5 }}
                 color={selected === 0 ? "primary" : "link"}
+                className='color-lightgray font-white'
                 onClick={() => {
                   this.setState({
                     selected: 0

@@ -19,23 +19,23 @@ class Buildings extends Component {
 
     if (buildingData) {
       // const chartData = [...this.props.dataStore.aggregate.campus.chartData.slice()];
-    
+
       return (
         <Col>
-          <Row id="title" className ="justify-content-center" style = {{marginTop: 10, marginBottom: 2}}>Buildings</Row>
+          <Row id="title" className="justify-content-center font-white" style={{ marginTop: 10, marginBottom: 2, fontSize: 20 }}>Buildings</Row>
           <Row>
             <ListGroup className="w-100">
               {buildingData.map(building => {
                 const bid = building.id;
-                let chartData = this.props.dataStore.aggregate[bid] ? [...this.props.dataStore.aggregate[bid].chartData ]: [];
+                let chartData = this.props.dataStore.aggregate[bid] ? [...this.props.dataStore.aggregate[bid].chartData] : [];
                 console.log(toJS(chartData));
                 return (
-                  <ListGroupItem key={bid}>
+                  <ListGroupItem key={bid} className='color-lightgray'>
                     <Link to={`/building/${bid}`}>
-                      <div className="d-flex flex-direction-row justify-content-between align-items-center">
+                      <div className="d-flex flex-direction-row justify-content-between align-items-center font-white">
                         <div className="d-flex flex-column">
                           <div>{building.name}</div>
-                          <small className="text-muted">Busy</small>
+                          <small className="font-busycolor">Busy</small>
                         </div>
                         <div>
                           <InlineChart data={chartData} />

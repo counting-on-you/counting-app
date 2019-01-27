@@ -35,14 +35,14 @@ class FloorItem extends Component {
       <Col>
         <Row>
           <ListGroup className="w-100">
-            <ListGroupItem>
+            <ListGroupItem className='color-lightgray font-white'>
               <div
                 className="d-flex flex-direction-row justify-content-between"
                 onClick={this.toggle}
               >
                 <div className="d-flex flex-column">
                   <div>{floorName}</div>
-                  {collapse ? null : <div className="text-muted">Busy</div>}
+                  {collapse ? null : <div className="font-busycolor">Busy</div>}
                 </div>
                 <div>
                   {!collapse ? (

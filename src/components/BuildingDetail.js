@@ -20,7 +20,7 @@ export class BuildingDetail extends Component {
 
 
       return (
-        <Col>
+        <Col style={{marginTop: 10, paddingBottom: 10}}>
           <CampusChart {...this.props} />
 					<FloorList floorData={floorsData} bid={match.params.id} />
         </Col>
