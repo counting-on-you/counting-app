@@ -41,6 +41,7 @@ export default class DataStore {
       return { x: ts, y: agg.data[ts] };
     });
 
+
     this.aggregate = {...this.aggregate, [id]: agg };
   }
 }

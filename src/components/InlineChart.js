@@ -14,7 +14,7 @@ export class InlineChart extends React.Component {
       <div>
         <Line
           data={{
-            labels: testData,
+            labels: [testData],
             datasets: [
               {
                 fill: false,

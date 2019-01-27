@@ -61,12 +61,12 @@ export class LineChart extends React.Component {
 
 
 
-    console.log(data)
-    console.log(
-      data.map(point => {
-        return this.formatDate(point.x, mode);
-      })
-    );
+    // console.log(data)
+    // console.log(
+    //   data.map(point => {
+    //     return this.formatDate(point.x, mode);
+    //   })
+    // );
     return (
       <div>
         <Line
